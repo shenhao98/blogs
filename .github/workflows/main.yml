@@ -10,7 +10,9 @@ on:
 jobs:
   docs:
     runs-on: ubuntu-latest
-
+    permissions:
+      contents: write  # 需要写入内容时的权限
+      pull-requests: write  # 需要操作 PR 时的权限
     steps:
       - uses: actions/checkout@v4
         with:
