@@ -5,6 +5,7 @@ import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 
 export default defineUserConfig({
   bundler: viteBundler(),
+  base: 'blogs',
   theme: defaultTheme({
     logo: 'xaizai.png',
     navbar: [
