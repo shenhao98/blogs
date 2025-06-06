@@ -6,32 +6,40 @@ import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 export default defineUserConfig({
   bundler: viteBundler(),
   base: 'blogs',
+  head: [
+    ['script', { src: '//at.alicdn.com/t/c/font_4941112_ahcgieo04sl.js' }],
+    ['link', { rel: 'icon', href: '/blogs/mianmian.png' }],
+  ],
   theme: defaultTheme({
-    logo: 'xaizai.png',
+    logo: 'mianmian.png',
     navbar: [
       {
-        text: '首页',
-        link: '/',
+        text: '鸿蒙开发',
+        prefix: '/harmony/',
+        children: [
+          'deveco.md',
+          'arkui.md',
+        ]
       },
-       {
-        text: '导航',
-        link: '/',
-      },
-    ],
-    sidebar: [
-      // SidebarItem
       {
-        text: 'Foo',
-        prefix: '/foo/',
-        link: 'https://github.com',
+        text: '工具网站',
+        prefix: '/site-tools/',
+        children: [
+          'ui.md',
+          'tool.md',
+        ]
       },
-      // 字符串 - 页面文件路径
-      '/bar/README.md',
+      {
+        text: '前端开发问题',
+        prefix: '/front/',
+        children: [
+          'question.md',
+        ]
+      },
     ],
   }),
   lang: 'zh-CN',
-  title: '你好， VuePress ！',
-  description: '这是我的第一个 VuePress 站点',
+  title: 'Coder.H',
   plugins: [
     docsearchPlugin({
       // 配置项
