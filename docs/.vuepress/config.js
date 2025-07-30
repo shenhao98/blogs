@@ -36,6 +36,13 @@ export default defineUserConfig({
           'question.md',
         ]
       },
+      {
+        text: '仅供个人学习',
+        prefix: '/my-utils/',
+        children: [
+          'wangyiyun.md',
+        ]
+      },
     ],
   }),
   lang: 'zh-CN',
