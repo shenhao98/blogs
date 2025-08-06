@@ -1,6 +1,8 @@
 ---
 lang: zh-CN
 title: DevEco
+createTime: 2025/06/05 14:45:19
+permalink: /article/qqwhg9x6/
 ---
 # 1. entry跳转到feature模块
   ```ets

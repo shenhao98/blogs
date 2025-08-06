@@ -2,7 +2,6 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
-
 export default defineUserConfig({
   bundler: viteBundler(),
   base: 'blogs',
@@ -34,6 +33,7 @@ export default defineUserConfig({
         prefix: '/front/',
         children: [
           'question.md',
+          'uniapp.md'
         ]
       },
       {
@@ -45,6 +45,9 @@ export default defineUserConfig({
       },
     ],
   }),
+  markdown: {
+    lineNumbers: true,
+  },
   lang: 'zh-CN',
   title: 'Coder.H',
   plugins: [

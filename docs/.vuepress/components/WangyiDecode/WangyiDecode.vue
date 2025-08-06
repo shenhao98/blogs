@@ -27,7 +27,6 @@ const chooseFile = () => {
     const file = (e.target as HTMLInputElement).files![0]
     const result = await decryptNCM(file)
     songInfo.value = result
-    console.log(result)
   }
   input.click()
 }
@@ -65,7 +64,7 @@ const chooseFile = () => {
       }
       .dec {
         font-size: 14px;
-        color: #cccccc;
+        opacity: 0.8;
       }
     }
   }
