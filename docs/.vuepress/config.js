@@ -4,7 +4,7 @@ import { defineUserConfig } from 'vuepress'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
 export default defineUserConfig({
   bundler: viteBundler(),
-  base: 'blogs',
+  base: '/blogs/',
   head: [
     ['script', { src: '//at.alicdn.com/t/c/font_4941112_ahcgieo04sl.js' }],
     ['link', { rel: 'icon', href: '/blogs/mianmian.png' }],
@@ -50,10 +50,6 @@ export default defineUserConfig({
   },
   lang: 'zh-CN',
   title: 'Coder.H',
-  plugins: [
-    docsearchPlugin({
-      // 配置项
-    }),
-  ],
+  plugins: [],
 })
 

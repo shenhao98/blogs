@@ -1,7 +1,5 @@
 ---
 title: uniapp
-createTime: 2025/08/06 13:38:44
-permalink: /article/p0eh8jc9/
 ---
 
 ## 判断应用是否连接到服务器
