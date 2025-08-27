@@ -17,7 +17,9 @@
 import { decryptNCM } from './index'
 import { ref } from 'vue'
 
-const songInfo = ref<any>({})
+const songInfo = ref<any>({
+  artist: "点击绵仔头像上传.ncm文件"
+})
 
 const chooseFile = () => {
   const input = document.createElement('input')

@@ -13,37 +13,69 @@ export default defineUserConfig({
     logo: 'mianmian.png',
     navbar: [
       {
-        text: '鸿蒙开发',
-        prefix: '/harmony/',
-        children: [
-          'deveco.md',
-          'arkui.md',
-        ]
+        text: '仅供个人学习',
+        link: '/study/',
       },
       {
         text: '工具网站',
-        prefix: '/site-tools/',
-        children: [
-          'ui.md',
-          'tool.md',
-        ]
+        link: '/site-tools/tool',
       },
       {
         text: '前端开发问题',
-        prefix: '/front/',
-        children: [
-          'question.md',
-          'uniapp.md'
-        ]
+        link: '/front/',
       },
       {
-        text: '仅供个人学习',
-        prefix: '/my-utils/',
-        children: [
-          'wangyiyun.md',
-        ]
+        text: '鸿蒙开发',
+        link: '/harmony/arkui',
       },
     ],
+    sidebar: {
+      '/harmony/': [
+        {
+          text: "ArkUI",
+          link: 'arkui'
+        },
+        {
+          text: "Deveco",
+          link: 'deveco'
+        },
+      ],
+      '/site-tools/': [
+        {
+          text: "工具",
+          link: 'tool'
+        },
+        {
+          text: "UI相关",
+          link: 'ui'
+        },
+      ],
+      '/front/': [
+        {
+          text: "综合",
+          link: 'index'
+        },
+        {
+          text: "js问题",
+          link: 'question'
+        },
+        {
+          text: "uniapp开发",
+          link: 'uniapp'
+        },
+      ],
+      '/study/': [
+        {
+          text: "介绍",
+          link: "index"
+        },
+        {
+          text: "网易云",
+          link: 'wangyiyun'
+        }
+      ],
+    },
+    sidebarDepth: 4
   }),
   markdown: {
     lineNumbers: true,

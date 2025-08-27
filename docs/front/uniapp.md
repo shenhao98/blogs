@@ -1,7 +1,3 @@
----
-title: uniapp
----
-
 ## 判断应用是否连接到服务器
 使用`uni_modules`插件
 ```kotlin

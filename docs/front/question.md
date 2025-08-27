@@ -1,6 +1,3 @@
----
-title: 前端开发中js使用的问题
----
 
  ## debounce
  ```js
