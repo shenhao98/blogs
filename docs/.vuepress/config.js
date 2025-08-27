@@ -28,8 +28,14 @@ export default defineUserConfig({
         text: '鸿蒙开发',
         link: '/harmony/arkui',
       },
+      {
+        text: '问题',
+        link: '/problem/index',
+      },
     ],
     sidebar: {
+      '/problem/': [
+      ],
       '/harmony/': [
         {
           text: "ArkUI",
