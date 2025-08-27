@@ -76,6 +76,10 @@ export default defineUserConfig({
           link: "index"
         },
         {
+          text: "kali系统",
+          link: "kali"
+        },
+        {
           text: "网易云",
           link: 'wangyiyun'
         }
