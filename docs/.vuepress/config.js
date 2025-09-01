@@ -32,6 +32,10 @@ export default defineUserConfig({
         text: '问题',
         link: '/problem/index',
       },
+      {
+        text: '工具命令',
+        link: '/command/git',
+      },
     ],
     sidebar: {
       '/problem/': [
@@ -79,6 +83,12 @@ export default defineUserConfig({
           text: "网易云",
           link: 'wangyiyun'
         }
+      ],
+      '/command/': [
+        {
+          text: "git命令",
+          link: "git"
+        },
       ],
     },
     sidebarDepth: 4
