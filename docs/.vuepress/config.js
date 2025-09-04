@@ -2,6 +2,7 @@ import { viteBundler } from '@vuepress/bundler-vite'
 import { defaultTheme } from '@vuepress/theme-default'
 import { defineUserConfig } from 'vuepress'
 import { docsearchPlugin } from '@vuepress/plugin-docsearch'
+import { prismjsPlugin } from '@vuepress/plugin-prismjs'
 export default defineUserConfig({
   bundler: viteBundler(),
   base: '/blogs/',
@@ -97,11 +98,17 @@ export default defineUserConfig({
     },
     sidebarDepth: 4
   }),
-  markdown: {
-    lineNumbers: true,
-  },
+  plugins: [
+    prismjsPlugin({
+      // 配置项
+      lineNumbers: true,
+      themes: {
+        light: 'ateliersulphurpool-light',
+        dark: 'one-dark'
+      }
+    }),
+  ],
   lang: 'zh-CN',
   title: 'Coder.H',
-  plugins: [],
 })
 
