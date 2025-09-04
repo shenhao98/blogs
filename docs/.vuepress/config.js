@@ -16,26 +16,32 @@ export default defineUserConfig({
       {
         text: '仅供个人学习',
         link: '/study/',
+        activeMatch: '^/study/',
       },
       {
         text: '工具网站',
         link: '/site-tools/tool',
+        activeMatch: '^/site-tools/',
       },
       {
         text: '前端开发问题',
         link: '/front/',
+        activeMatch: '^/front/'
       },
       {
         text: '鸿蒙开发',
         link: '/harmony/arkui',
+        activeMatch: '^/harmony/'
       },
       {
         text: '问题',
         link: '/problem/index',
+        activeMatch: '^/problem/'
       },
       {
         text: '工具命令',
         link: '/command/git',
+        activeMatch: '^/command/'
       },
     ],
     sidebar: {
