@@ -74,6 +74,10 @@ export default defineUserConfig({
           text: "uniapp开发",
           link: 'uniapp'
         },
+        {
+          text: "css效果",
+          link: 'css-effect'
+        },
       ],
       '/study/': [
         {
@@ -105,7 +109,8 @@ export default defineUserConfig({
       themes: {
         light: 'ateliersulphurpool-light',
         dark: 'one-dark'
-      }
+      },
+      collapsedLines: 15
     }),
   ],
   lang: 'zh-CN',

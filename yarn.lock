@@ -1733,6 +1733,15 @@
     "@vuepress/highlighter-helper" "2.0.0-rc.106"
     prismjs "^1.30.0"
 
+"@vuepress/plugin-prismjs@^2.0.0-rc.112":
+  version "2.0.0-rc.112"
+  resolved "https://registry.npmmirror.com/@vuepress/plugin-prismjs/-/plugin-prismjs-2.0.0-rc.112.tgz#c8158fdcc1b61e6866e9875cfde8f705b76768e5"
+  integrity sha512-OYToQltHyUEv4PYFOxpZfWENZbx+anEVcVsy4JV9Rg2x4xUijd0TdzaVfgWvl7WIHGUrJ3rFRy964X4YhTRLQA==
+  dependencies:
+    "@vuepress/helper" "2.0.0-rc.112"
+    "@vuepress/highlighter-helper" "2.0.0-rc.112"
+    prismjs "^1.30.0"
+
 "@vuepress/plugin-reading-time@2.0.0-rc.112":
   version "2.0.0-rc.112"
   resolved "https://registry.npmmirror.com/@vuepress/plugin-reading-time/-/plugin-reading-time-2.0.0-rc.112.tgz#61300217885b790c26ae15acc122d26002b6b1b1"
