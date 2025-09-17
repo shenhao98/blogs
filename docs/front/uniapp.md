@@ -1,5 +1,7 @@
 ## 判断应用是否连接到服务器
+
 使用`uni_modules`插件
+
 ```kotlin
 package uts.sdk.modules.testIp
 import java.io.BufferedReader
@@ -23,5 +25,19 @@ object NativeFile {
       }
     }.start()
   }
+}
+```
+
+## canvas 不生效
+
+使用 setup 函数时,在封装的组件中需要在<code>createCanvasContext()</code>传入<code>getCurrentInstance()</code>代替 this
+
+```javascript
+import { getCurrentInstance } from 'vue'
+const instance = getCurrentInstance()
+const drawContent = () => {
+  // ...
+  const ctx = uni.createCanvasContext('myCanvas', instance)
+  // ...
 }
 ```
