@@ -1,125 +1,134 @@
-import { viteBundler } from '@vuepress/bundler-vite'
-import { defaultTheme } from '@vuepress/theme-default'
-import { defineUserConfig } from 'vuepress'
-import { docsearchPlugin } from '@vuepress/plugin-docsearch'
-import { prismjsPlugin } from '@vuepress/plugin-prismjs'
+import { viteBundler } from "@vuepress/bundler-vite";
+import { defaultTheme } from "@vuepress/theme-default";
+import { defineUserConfig } from "vuepress";
+import { docsearchPlugin } from "@vuepress/plugin-docsearch";
+import { prismjsPlugin } from "@vuepress/plugin-prismjs";
 export default defineUserConfig({
   bundler: viteBundler(),
-  base: '/blogs/',
+  base: "/blogs/",
   head: [
-    ['script', { src: '//at.alicdn.com/t/c/font_4941112_ahcgieo04sl.js' }],
-    ['link', { rel: 'icon', href: '/blogs/mianmian.png' }],
+    ["script", { src: "//at.alicdn.com/t/c/font_4941112_ahcgieo04sl.js" }],
+    ["link", { rel: "icon", href: "/blogs/mianmian.png" }],
   ],
   theme: defaultTheme({
-    logo: 'mianmian.png',
+    logo: "mianmian.png",
     navbar: [
       {
-        text: '仅供个人学习',
-        link: '/study/',
-        activeMatch: '^/study/',
+        text: "仅供个人学习",
+        link: "/study/",
+        activeMatch: "^/study/",
       },
       {
-        text: '工具网站',
-        link: '/site-tools/tool',
-        activeMatch: '^/site-tools/',
+        text: "工具网站",
+        link: "/site-tools/tool",
+        activeMatch: "^/site-tools/",
       },
       {
-        text: '前端开发问题',
-        link: '/front/',
-        activeMatch: '^/front/'
+        text: "前端开发问题",
+        link: "/front/",
+        activeMatch: "^/front/",
       },
       {
-        text: '鸿蒙开发',
-        link: '/harmony/arkui',
-        activeMatch: '^/harmony/'
+        text: "鸿蒙开发",
+        link: "/harmony/arkui",
+        activeMatch: "^/harmony/",
       },
       {
-        text: '问题',
-        link: '/problem/index',
-        activeMatch: '^/problem/'
+        text: "问题",
+        link: "/problem/index",
+        activeMatch: "^/problem/",
       },
       {
-        text: '工具命令',
-        link: '/command/git',
-        activeMatch: '^/command/'
+        text: "工具命令",
+        link: "/command/git",
+        activeMatch: "^/command/",
+      },
+      {
+        text: "工具配置",
+        link: "/tool-config/vscode",
+        activeMatch: "^/tool-config/",
       },
     ],
     sidebar: {
-      '/problem/': [
+      "/problem/": [],
+      "/tool-config/": [
+        {
+          text: "vscode配置",
+          link: "vscode",
+        },
       ],
-      '/harmony/': [
+      "/harmony/": [
         {
           text: "ArkUI",
-          link: 'arkui'
+          link: "arkui",
         },
         {
           text: "Deveco",
-          link: 'deveco'
+          link: "deveco",
         },
       ],
-      '/site-tools/': [
+      "/site-tools/": [
         {
           text: "工具",
-          link: 'tool'
+          link: "tool",
         },
         {
           text: "UI相关",
-          link: 'ui'
+          link: "ui",
         },
       ],
-      '/front/': [
+      "/front/": [
         {
           text: "综合",
-          link: 'index'
+          link: "index",
         },
         {
           text: "js问题",
-          link: 'question'
+          link: "question",
         },
         {
           text: "uniapp开发",
-          link: 'uniapp'
+          link: "uniapp",
         },
         {
           text: "css效果",
-          link: 'css-effect'
+          link: "css-effect",
         },
       ],
-      '/study/': [
+      "/study/": [
         {
           text: "介绍",
-          link: "index"
+          link: "index",
         },
         {
           text: "kali系统",
-          link: "kali"
+          link: "kali",
         },
         {
           text: "网易云",
-          link: 'wangyiyun'
-        }
+          link: "wangyiyun",
+        },
       ],
-      '/command/': [
+      "/command/": [
         {
           text: "git命令",
-          link: "git"
+          link: "git",
         },
       ],
     },
-    sidebarDepth: 4
+    sidebarDepth: 4,
   }),
   plugins: [
     prismjsPlugin({
       // 配置项
       lineNumbers: true,
       themes: {
-        light: 'ateliersulphurpool-light',
-        dark: 'one-dark'
+        light: "ateliersulphurpool-light",
+        dark: "one-dark",
       },
-      collapsedLines: 15
+      collapsedLines: 15,
     }),
   ],
-  lang: 'zh-CN',
-  title: 'Coder.H',
-})
-
+  lang: "zh-CN",
+  title: "Coder.H",
+});
