@@ -12,6 +12,7 @@ export default defineUserConfig({
   ],
   theme: defaultTheme({
     logo: 'mianmian.png',
+    contributors: false,
     navbar: [
       {
         text: '仅供个人学习',
