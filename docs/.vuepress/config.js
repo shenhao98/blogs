@@ -1,118 +1,129 @@
-import { viteBundler } from "@vuepress/bundler-vite";
-import { defaultTheme } from "@vuepress/theme-default";
-import { defineUserConfig } from "vuepress";
-import { docsearchPlugin } from "@vuepress/plugin-docsearch";
-import { prismjsPlugin } from "@vuepress/plugin-prismjs";
+import { viteBundler } from '@vuepress/bundler-vite'
+import { defaultTheme } from '@vuepress/theme-default'
+import { defineUserConfig } from 'vuepress'
+import { docsearchPlugin } from '@vuepress/plugin-docsearch'
+import { prismjsPlugin } from '@vuepress/plugin-prismjs'
 export default defineUserConfig({
   bundler: viteBundler(),
-  base: "/blogs/",
+  base: '/blogs/',
   head: [
-    ["script", { src: "//at.alicdn.com/t/c/font_4941112_ahcgieo04sl.js" }],
-    ["link", { rel: "icon", href: "/blogs/mianmian.png" }],
+    ['script', { src: '//at.alicdn.com/t/c/font_4941112_ahcgieo04sl.js' }],
+    ['link', { rel: 'icon', href: '/blogs/mianmian.png' }],
   ],
   theme: defaultTheme({
-    logo: "mianmian.png",
+    logo: 'mianmian.png',
     navbar: [
       {
-        text: "仅供个人学习",
-        link: "/study/",
-        activeMatch: "^/study/",
+        text: '仅供个人学习',
+        link: '/study/',
+        activeMatch: '^/study/',
       },
       {
-        text: "工具网站",
-        link: "/site-tools/tool",
-        activeMatch: "^/site-tools/",
+        text: '工具网站',
+        link: '/site-tools/tool',
+        activeMatch: '^/site-tools/',
       },
       {
-        text: "前端开发问题",
-        link: "/front/",
-        activeMatch: "^/front/",
+        text: '前端开发问题',
+        link: '/front/',
+        activeMatch: '^/front/',
       },
       {
-        text: "鸿蒙开发",
-        link: "/harmony/arkui",
-        activeMatch: "^/harmony/",
+        text: '鸿蒙开发',
+        link: '/harmony/arkui',
+        activeMatch: '^/harmony/',
       },
       {
-        text: "问题",
-        link: "/problem/index",
-        activeMatch: "^/problem/",
+        text: '问题',
+        link: '/problem/index',
+        activeMatch: '^/problem/',
       },
       {
-        text: "工具命令",
-        link: "/command/git",
-        activeMatch: "^/command/",
+        text: '工具命令',
+        link: '/command/git',
+        activeMatch: '^/command/',
       },
       {
-        text: "工具配置",
-        link: "/tool-config/vscode",
-        activeMatch: "^/tool-config/",
+        text: '工具配置',
+        link: '/tool-config/vscode',
+        activeMatch: '^/tool-config/',
+      },
+      {
+        text: '插件',
+        link: '/plugins/xlsx',
+        activeMatch: '^/plugins/',
       },
     ],
     sidebar: {
-      "/problem/": [],
-      "/tool-config/": [
+      '/problem/': [],
+      '/plugins/': [
         {
-          text: "vscode配置",
-          link: "vscode",
+          text: 'xlsx',
+          link: 'xlsx',
         },
       ],
-      "/harmony/": [
+      '/tool-config/': [
         {
-          text: "ArkUI",
-          link: "arkui",
-        },
-        {
-          text: "Deveco",
-          link: "deveco",
+          text: 'vscode配置',
+          link: 'vscode',
         },
       ],
-      "/site-tools/": [
+      '/harmony/': [
         {
-          text: "工具",
-          link: "tool",
+          text: 'ArkUI',
+          link: 'arkui',
         },
         {
-          text: "UI相关",
-          link: "ui",
-        },
-      ],
-      "/front/": [
-        {
-          text: "综合",
-          link: "index",
-        },
-        {
-          text: "js问题",
-          link: "question",
-        },
-        {
-          text: "uniapp开发",
-          link: "uniapp",
-        },
-        {
-          text: "css效果",
-          link: "css-effect",
+          text: 'Deveco',
+          link: 'deveco',
         },
       ],
-      "/study/": [
+      '/site-tools/': [
         {
-          text: "介绍",
-          link: "index",
+          text: '工具',
+          link: 'tool',
         },
         {
-          text: "kali系统",
-          link: "kali",
-        },
-        {
-          text: "网易云",
-          link: "wangyiyun",
+          text: 'UI相关',
+          link: 'ui',
         },
       ],
-      "/command/": [
+      '/front/': [
         {
-          text: "git命令",
-          link: "git",
+          text: '综合',
+          link: 'index',
+        },
+        {
+          text: 'js问题',
+          link: 'question',
+        },
+        {
+          text: 'uniapp开发',
+          link: 'uniapp',
+        },
+        {
+          text: 'css效果',
+          link: 'css-effect',
+        },
+      ],
+      '/study/': [
+        {
+          text: '介绍',
+          link: 'index',
+        },
+        {
+          text: 'kali系统',
+          link: 'kali',
+        },
+        {
+          text: '网易云',
+          link: 'wangyiyun',
+        },
+      ],
+      '/command/': [
+        {
+          text: 'git命令',
+          link: 'git',
         },
       ],
     },
@@ -123,12 +134,12 @@ export default defineUserConfig({
       // 配置项
       lineNumbers: true,
       themes: {
-        light: "ateliersulphurpool-light",
-        dark: "one-dark",
+        light: 'ateliersulphurpool-light',
+        dark: 'one-dark',
       },
       collapsedLines: 15,
     }),
   ],
-  lang: "zh-CN",
-  title: "Coder.H",
-});
+  lang: 'zh-CN',
+  title: 'Coder.H',
+})
