@@ -35,12 +35,22 @@ export default defineUserConfig({
         activeMatch: '^/harmony/',
       },
       {
+        text: '安卓开发',
+        link: '/android/',
+        activeMatch: '^/android/',
+      },
+      {
+        text: '微信开发',
+        link: '/miniapp/',
+        activeMatch: '^/miniapp/',
+      },
+      {
         text: '问题',
         link: '/problem/index',
         activeMatch: '^/problem/',
       },
       {
-        text: '工具命令',
+        text: '软件包使用',
         link: '/command/git',
         activeMatch: '^/command/',
       },
@@ -89,6 +99,12 @@ export default defineUserConfig({
           link: 'ui',
         },
       ],
+      '/miniapp/': [
+        {
+          text: '问题',
+          link: 'index',
+        },
+      ],
       '/front/': [
         {
           text: '综合',
@@ -125,6 +141,10 @@ export default defineUserConfig({
         {
           text: 'git命令',
           link: 'git',
+        },
+        {
+          text: 'WebAssembly',
+          link: 'webAssembly',
         },
       ],
     },
