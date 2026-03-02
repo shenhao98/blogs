@@ -13,18 +13,11 @@ const generateImg = () => {
   imgsRef.value.appendChild(imgEl)
 }
 
-let timer,
-  count = 1
-
-onMounted(() => {
-  generateImg()
-  timer = setInterval(() => {
+onMounted(async () => {
+  for (let i = 0; i < 9; i++) {
+    await new Promise((resolve) => setTimeout(resolve, 10))
     generateImg()
-    count++
-    if (count > 8) {
-      clearInterval(timer)
-    }
-  }, 100)
+  }
 })
 </script>
 

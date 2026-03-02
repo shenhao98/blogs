@@ -155,3 +155,16 @@ object NativeUtils {
   }
 }
 ```
+
+## 使用aar
+
+1. 打包好的arr放到`utssdk\app-android\libs`
+2. 配置`config.json`
+
+```json title="config.json"
+"dependencies": {
+  "libs/led-control.aar": ""
+}
+```
+
+3. 提交云打包基座
