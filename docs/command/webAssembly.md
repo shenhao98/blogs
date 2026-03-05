@@ -50,3 +50,27 @@ emcc --no-entry  demo.c --js-library pkg.js -o demo.wasm
 ```c
 EM_JS(void, callback, (int a), {});
 ```
+
+## wasm压缩解压
+
+下载[brotli](https://github.com/google/brotli/releases)
+
+```bash
+# 基础压缩（默认压缩级别）
+brotli -o your_file.wasm.br your_file.wasm
+
+# 高压缩级别（推荐，压缩率更高，耗时稍长）
+brotli -9 -o your_file.wasm.br your_file.wasm
+```
+
+```bash
+# 基础解压（生成同名 .wasm 文件）
+brotli -d your_file.wasm.br
+
+# 自定义输出文件名（避免覆盖已有文件）
+brotli -d your_file.wasm.br -o uncompressed.wasm
+```
+
+## 转wat文件分析
+
+`wasm2wat demo.wasm -o demo.wat`
