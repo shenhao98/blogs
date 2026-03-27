@@ -66,6 +66,12 @@ export default defineUserConfig({
       },
     ],
     sidebar: {
+      '/android/': [
+        {
+          text: 'adb连接',
+          link: 'adb',
+        },
+      ],
       '/problem/': [],
       '/plugins/': [
         {
