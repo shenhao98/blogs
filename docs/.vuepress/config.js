@@ -64,8 +64,19 @@ export default defineUserConfig({
         link: '/plugins/xlsx',
         activeMatch: '^/plugins/',
       },
+      {
+        text: 'AI',
+        link: '/ai/image',
+        activeMatch: '^/ai/',
+      },
     ],
     sidebar: {
+      '/ai/': [
+        {
+          text: '图片生成',
+          link: 'image',
+        },
+      ],
       '/android/': [
         {
           text: 'adb连接',
@@ -77,6 +88,10 @@ export default defineUserConfig({
         {
           text: 'xlsx',
           link: 'xlsx',
+        },
+        {
+          text: 'openssl',
+          link: 'openssl',
         },
       ],
       '/tool-config/': [
@@ -127,6 +142,10 @@ export default defineUserConfig({
         {
           text: 'css效果',
           link: 'css-effect',
+        },
+        {
+          text: 'ps使用',
+          link: 'ps',
         },
       ],
       '/study/': [
