@@ -73,4 +73,18 @@ brotli -d your_file.wasm.br -o uncompressed.wasm
 
 ## 转wat文件分析
 
-`wasm2wat demo.wasm -o demo.wat`
+```bash
+# 安装工具
+npm i wasm2wat -g
+
+# 编译命令
+wasm2wat demo.wasm -o demo.wat
+```
+
+## wasm反编译伪代码
+
+[工具下载](https://github.com/WebAssembly/wabt)
+
+```bash
+wasm-decompile test.wasm -o test.dcmp
+```
