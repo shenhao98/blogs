@@ -79,6 +79,10 @@ export default defineUserConfig({
       ],
       '/android/': [
         {
+          text: 'Android开发',
+          link: 'index',
+        },
+        {
           text: 'adb连接',
           link: 'adb',
         },
