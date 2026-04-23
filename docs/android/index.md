@@ -78,14 +78,79 @@ dependencies {
 }
 ```
 
-### 3.在uniapp中使用
+### 3.插件配置
 
 1. 创建一个libs文件夹，将aar文件放入libs文件夹中
 2. 配置`config.json`
 
 ```json title="config.json"
+// .aar是自动引入不需要配置
 {
   "minSdkVersion": "21",
-  "dependencies": ["libs/facedetectionlib.aar"]
+  // 云打包不提供这些依赖 需要手动引入
+  "dependencies": [
+    "androidx.activity:activity-compose:1.8.0",
+    "androidx.compose.material3:material3:1.3.1",
+    "androidx.compose.ui:ui:1.7.5",
+    "androidx.compose.ui:ui-graphics:1.7.5",
+    "androidx.compose.ui:ui-tooling-preview:1.7.5",
+    "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
+  ]
+}
+```
+
+3. 跳转activity
+
+```ts
+export function toTestPage() {
+  const activity = UTSAndroid.getUniActivity()!
+  const ComposeFaceActivity = java.lang.Class.forName('cn.mga1.uts_face.FaceDetectionActivity')
+  const intent = new Intent(activity, ComposeFaceActivity)
+  activity.startActivityForResult(intent, 1000)
+}
+
+// 或者调用kotlin跳转
+import TestModule from 'uts.sdk.modules.shFace.TestModule2'
+export function toTestPage2() {
+  const activity = UTSAndroid.getUniActivity()!
+  new TestModule().gotoNativePage2(activity)
+}
+
+// 全局监听返回
+UTSAndroid.onAppActivityResult((requestCode: Int, resultCode: Int, data?: Intent) => {
+  if (requestCode == REQUEST_CODE) {
+    // 我们发起的请求
+    let eventName =
+      'onAppActivityResult  -  requestCode:' +
+      requestCode +
+      ' -resultCode:' +
+      resultCode +
+      ' -data:' +
+      JSON.stringify(data)
+    console.log(eventName)
+  } else {
+    // 别的代码发起的请求，不要处理
+  }
+})
+```
+
+```kt
+// kotlin跳转
+import io.dcloud.feature.uniapp.common.UniModule
+class TestModule2 :UniModule() {
+
+  var REQUEST_CODE: Int = 1000
+  val TAG = "TestModule"
+
+  @UniJSMethod(uiThread = true)
+  fun gotoNativePage2(context: Context) {
+      Log.d(TAG, "gotoNativePage: eqweqweqw")
+      val intent: Intent =
+          Intent(context, FaceDetectionActivity::class.java)
+      (context as Activity).startActivityForResult(
+          intent,
+          REQUEST_CODE
+      )
+  }
 }
 ```
