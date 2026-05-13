@@ -154,3 +154,20 @@ class TestModule2 :UniModule() {
   }
 }
 ```
+
+```kt
+// as中测试跳转
+@UniJSMethod(uiThread = true)
+fun gotoNativePage() {
+    Log.d(TAG, "gotoNativePage: yriuew4324324234234234yruwyer")
+
+    if (mUniSDKInstance != null) {
+        val intent: Intent =
+            Intent(mUniSDKInstance.getContext(), FaceDetectionActivity::class.java)
+        (mUniSDKInstance.getContext() as Activity).startActivityForResult(
+            intent,
+              REQUEST_CODE
+        )
+    }
+}
+```

@@ -69,6 +69,11 @@ export default defineUserConfig({
         link: '/ai/image',
         activeMatch: '^/ai/',
       },
+      {
+        text: '学外语',
+        link: '/english/index',
+        activeMatch: '^/english/',
+      },
     ],
     sidebar: {
       '/ai/': [
