@@ -82,6 +82,16 @@ export default defineUserConfig({
           link: 'image',
         },
       ],
+      '/english/': [
+        {
+          text: '学外语',
+          link: 'index',
+        },
+        {
+          text: '学音标',
+          link: 'soundmark',
+        },
+      ],
       '/android/': [
         {
           text: 'Android开发',
