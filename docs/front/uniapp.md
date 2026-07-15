@@ -1,4 +1,4 @@
-## 判断应用是否连接到服务器
+## 1. 判断应用是否连接到服务器
 
 使用`uni_modules`插件
 
@@ -28,7 +28,7 @@ object NativeFile {
 }
 ```
 
-## canvas 不生效
+## 2. canvas 不生效
 
 使用 setup 函数时,在封装的组件中需要在<code>createCanvasContext()</code>传入<code>getCurrentInstance()</code>代替 this
 
@@ -42,7 +42,7 @@ const drawContent = () => {
 }
 ```
 
-## base64 转本地文件
+## 3. base64 转本地文件
 
 Base64.decode 超级慢
 
@@ -156,7 +156,7 @@ object NativeUtils {
 }
 ```
 
-## subNVues
+## 4. subNVues
 
 ::: danger 恶心的bug
 
@@ -199,3 +199,27 @@ uni.getSubNVueById('access_widget1').hide()
 ::: warning
 每次修改之后必须重启
 :::
+
+## 5. HelloUniApp
+
+1. `app\src\main\assets\apps`下的文件夹对应APPID
+2. `app\src\main\assets\data\dcloud_control.xml` 下的`appid`对应APPID
+3. 从 Android云端证书 -> [下载云端证书](https://dev.dcloud.net.cn/pages/app/detail/info?appid=__UNI__XXXX)到 src 目录
+4. 项目级别的`build.gradle`配置证书
+
+```gradle title="build.gradle"
+// 云端证书页面 点击证书详情
+signingConfigs {
+    config {
+        keyAlias '__uni__cdeffui'  // 证书详情的别名
+        keyPassword '124' // 点击查看证书密码获得
+        storeFile file('app.keystore') // 从云端证书下载下来的文件重命名后
+        storePassword '124' // 点击查看证书密码获得
+        v1SigningEnabled true // 不用动
+        v2SigningEnabled true // 不用动
+    }
+}
+```
+
+5. 配置包名 build.gradle 中的 applicationId 包名和各平台信息 `包名/appid/域名` 一致
+6. 配置appKey 各平台信息 -> 查看离线key 里面的 `Android` 字段
