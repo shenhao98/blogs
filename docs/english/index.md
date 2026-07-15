@@ -1,3 +1,7 @@
+## 单词变形
+
+$$N \xrightarrow{y/al/ous/ful/ic} ADJ \xrightarrow{+ly} ADV$$
+
 ## go
 
 go 去

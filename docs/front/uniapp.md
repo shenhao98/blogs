@@ -155,3 +155,47 @@ object NativeUtils {
   }
 }
 ```
+
+## subNVues
+
+::: danger 恶心的bug
+
+1. 必须保存两次配置才能生效
+2. top会给元素自动生成内边距，比如想要top=30px，那么就设置top=15px
+   :::
+
+如果两个subNVues,需要把 `style` 的 `background` 设置为 `rgba(0,0,0,0)` 不然层叠不起效果
+[配置文档](https://uniapp.dcloud.net.cn/collocation/pages.html#app-subnvues)
+
+```json title="pages.json"
+"app-plus": {
+  "subNVues": [
+    {
+      "id": "access_widget",
+      "path": "pages/launch/subNvue/index",
+      "style": {
+        "background": "rgba(0,0,0,0)",
+        "zIndex": 188
+      }
+    },
+    {
+      "id": "access_widget1",
+      "path": "pages/launch/subNvue/index2",
+      "style": {
+        "background": "rgba(0,0,0,0)",
+        "zIndex": 193
+      }
+    }
+  ]
+}
+```
+
+手动关闭窗体 [开发文档](https://uniapp.dcloud.net.cn/api/window/subNVues.html#subnvue)
+
+```vue
+uni.getSubNVueById('access_widget1').hide()
+```
+
+::: warning
+每次修改之后必须重启
+:::

@@ -33,6 +33,8 @@ NDK打包so文件 android项目根目录运行
 
 ### 1. 新建模块
 
+首先要下载UniPlugin-Hello-AS
+
 1. 打开新建模块界面 部菜单 → File → New → New Module…
 
 2. 把当前模块的`build.gradle.kts` 的plugins改为 `alias(libs.plugins.android.library)`，注释掉defaultConfig中的`applicationId、versionCode、versionName`
@@ -170,4 +172,105 @@ fun gotoNativePage() {
         )
     }
 }
+```
+
+## 开发一个组件
+
+创建好library后只需要改这些
+
+```kts title="build.gradle"
+plugins {
+  id 'org.jetbrains.kotlin.plugin.compose'
+}
+android {
+  buildFeatures {
+    compose true
+  }
+  // 这个不确定加不加
+  composeOptions {
+    kotlinCompilerExtensionVersion = "1.5.4"
+  }
+}
+```
+
+::: warning
+所桥接的组件内需要初始化任何东西都需要放到 桥接文件的init中去
+:::
+
+使用 `ComposeView` 桥接开发的组件
+
+```kt title="BridgeView.kt"
+
+package cn.mga1.wecode
+
+import android.content.Context
+import android.widget.LinearLayout
+import androidx.compose.ui.platform.ComposeView
+
+class WeCodeView(context: Context) : LinearLayout(context) {
+
+    init {
+
+        val composeView = ComposeView(context)
+        composeView.setContent {
+            TextLayoutCompose()
+        }
+        addView(composeView)
+    }
+
+}
+
+```
+
+打包需要配置的依赖
+
+```json title="config.json"
+"dependencies": [
+  "androidx.activity:activity-compose:1.8.0",
+  "androidx.compose.material3:material3:1.3.1",
+  "androidx.compose.ui:ui:1.7.5",
+  "androidx.compose.ui:ui-graphics:1.7.5",
+  "androidx.compose.ui:ui-tooling-preview:1.7.5",
+  "androidx.compose.runtime:runtime:1.7.5",
+  "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
+],
+```
+
+```json title="pages.json"
+  "app-plus": {
+    "subNVues": [
+      {
+        "id": "access_widget",
+        "path": "pages/launch/subNvue/index",
+        "style": {
+          "position": "absolute",
+          "width": "710rpx",
+          "height": "800rpx",
+          "bottom": "20rpx",
+          "top": "330rpx",
+          "margin": "auto",
+          "fontSize": "24upx",
+          "background": "transparent",
+          "mask": "rgba(0,0,0,0)",
+          "zIndex": "1"
+        }
+      },
+      {
+        "id": "access_widget1",
+        "path": "pages/launch/subNvue/index2",
+        "style": {
+          "position": "absolute",
+          "width": "710rpx",
+          "height": "800rpx",
+          "bottom": "20rpx",
+          "top": "340rpx",
+          "margin": "auto",
+          "fontSize": "24upx",
+          "background": "transparent",
+          "mask": "rgba(0,0,0,0)",
+          "zIndex": "1"
+        }
+      }
+    ]
+  }
 ```

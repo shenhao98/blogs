@@ -639,6 +639,13 @@
   dependencies:
     "@types/markdown-it" "^14.1.2"
 
+"@mdit/helper@0.23.2":
+  version "0.23.2"
+  resolved "https://registry.npmmirror.com/@mdit/helper/-/helper-0.23.2.tgz#2b0363166aebf3ce1c851113ee21160fd82e9e11"
+  integrity sha512-w4oja7kZYnkSiodfn4Neg1gmlIkvQtmCBJTLvLFOaET7xt8KomDNPQeumpGobQ9dWkXFqBKHlxjTYgroPH+CvA==
+  dependencies:
+    "@types/markdown-it" "^14.1.2"
+
 "@mdit/plugin-alert@^0.18.0":
   version "0.18.0"
   resolved "https://registry.npmmirror.com/@mdit/plugin-alert/-/plugin-alert-0.18.0.tgz#1cf3fd090907c381f35229a61d35b68cc97a7c78"
@@ -728,6 +735,16 @@
     "@mdit/plugin-tex" "0.22.1"
     "@types/markdown-it" "^14.1.2"
 
+"@mdit/plugin-katex@^0.25.2":
+  version "0.25.2"
+  resolved "https://registry.npmmirror.com/@mdit/plugin-katex/-/plugin-katex-0.25.2.tgz#333dafcf29ac8e30a2c1d14485f4bc6fa974a022"
+  integrity sha512-r7nKvngZP2XXVGsYIXZt4UNxhTAxwSbLSXQtW445nJGhcp0ZrWmdPoz3AFZAX5x51inARab/lnZhD3uq01V5Yg==
+  dependencies:
+    "@mdit/helper" "0.23.2"
+    "@mdit/plugin-tex" "0.24.2"
+    "@types/markdown-it" "^14.1.2"
+    katex "^0.16.44"
+
 "@mdit/plugin-mark@^0.22.1":
   version "0.22.1"
   resolved "https://registry.npmmirror.com/@mdit/plugin-mark/-/plugin-mark-0.22.1.tgz#0fcf9a01acb34f438aa3d7021bcdcbd547759730"
@@ -795,6 +812,13 @@
   version "0.22.1"
   resolved "https://registry.npmmirror.com/@mdit/plugin-tex/-/plugin-tex-0.22.1.tgz#fd2ae839242444e329a76c2213631c807591e6d8"
   integrity sha512-sCoOHznJjECeWCd0SggYpiZfwDfGGZ5mN3sKQA9PCHVRRXHh0dEl3wwNNvp/L8f6jZ4SpG5mxtPqBvxlPbE5nw==
+  dependencies:
+    "@types/markdown-it" "^14.1.2"
+
+"@mdit/plugin-tex@0.24.2":
+  version "0.24.2"
+  resolved "https://registry.npmmirror.com/@mdit/plugin-tex/-/plugin-tex-0.24.2.tgz#42d261caaf31cbc4e0351ecbd3625971a383982b"
+  integrity sha512-nVKIJHQJHvgDByKMpCgFT6gdeEZUyzZby24BjCjxP2N10bkgK8IEwZIBu7G5n5WBw2D0kmFD4Top+YA2mjeiQQ==
   dependencies:
     "@types/markdown-it" "^14.1.2"
 
@@ -2786,6 +2810,20 @@ katex@^0.16.22:
   version "0.16.22"
   resolved "https://registry.npmmirror.com/katex/-/katex-0.16.22.tgz#d2b3d66464b1e6d69e6463b28a86ced5a02c5ccd"
   integrity sha512-XCHRdUw4lf3SKBaJe4EvgqIuWwkPSo9XoeO8GjQW94Bp7TWv9hNhzZjZ+OH9yf1UmLygb7DIT5GSFQiyt16zYg==
+  dependencies:
+    commander "^8.3.0"
+
+katex@^0.16.44:
+  version "0.16.47"
+  resolved "https://registry.npmmirror.com/katex/-/katex-0.16.47.tgz#0a13a42c2deb4f74e61f162d440b9165a548030f"
+  integrity sha512-Eeo8Ys1doU1z+x8AZsPpQu+p/QcZBI5PeOo7QGQdy2x2m0MU/hYagBbGOmXwr5KVbEfVuWv9LpnQWeehogurjg==
+  dependencies:
+    commander "^8.3.0"
+
+katex@^0.17.0:
+  version "0.17.0"
+  resolved "https://registry.npmmirror.com/katex/-/katex-0.17.0.tgz#536e25874ec9ac8728e3b4b7bf7fec6557b7dbf4"
+  integrity sha512-Vdw0ATsQ9V+LuegM/BTwQqV/6cTl5lbGcIrU+BCgLxyf6bo38ybOr372tuSIxir3CN720flu1meYR6XzNMwQnw==
   dependencies:
     commander "^8.3.0"
 
