@@ -7,14 +7,15 @@ import { onMounted, ref } from 'vue'
 const imgsRef = ref()
 const generateImg = () => {
   const imgEl = document.createElement('img')
-  imgEl.src = 'https://timg.cheems.ru?t=' + Date.now()
+  // imgEl.src = 'https://www.dmoe.cc/random.php?t=' + Date.now()
+  imgEl.src = 'https://t.alcy.cc/ycy?t=' + Date.now()
   imgEl.alt = '骚等片刻'
   console.log('imgsRef.value -->', imgsRef.value)
   imgsRef.value.appendChild(imgEl)
 }
 
 onMounted(async () => {
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < 18; i++) {
     await new Promise((resolve) => setTimeout(resolve, 10))
     generateImg()
   }
