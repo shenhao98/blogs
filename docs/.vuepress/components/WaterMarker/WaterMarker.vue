@@ -51,6 +51,45 @@
       <span class="q-value">{{ quality }}%</span>
     </div>
 
+    <!-- 控制：水印字号 -->
+    <div class="quality-row">
+      <label for="fontSizeRange">🔠 水印字号</label>
+      <input id="fontSizeRange" type="range" min="12" max="120" v-model.number="fontSize" />
+      <span class="q-value">{{ fontSize }}px</span>
+    </div>
+
+    <!-- 控制：水印间距 -->
+    <div class="quality-row">
+      <label for="spacingRange">📐 水印间距</label>
+      <input id="spacingRange" type="range" min="0.4" max="2.5" step="0.1" v-model.number="spacingScale" />
+      <span class="q-value">{{ spacingScale.toFixed(1) }}x</span>
+    </div>
+
+    <!-- 控制：连接线类型 -->
+    <div class="quality-row">
+      <label for="lineStyleSelect">🔗 连接线</label>
+      <select id="lineStyleSelect" v-model="lineStyle" class="line-select">
+        <option value="none">无</option>
+        <option value="solid">实线</option>
+        <option value="dashed">虚线</option>
+        <option value="dotted">点线</option>
+      </select>
+    </div>
+
+    <!-- 控制：水印颜色（文字 / 线条 / 描边 统一） -->
+    <div class="quality-row">
+      <label for="watermarkColorInput">🎨 水印颜色</label>
+      <input id="watermarkColorInput" type="color" v-model="watermarkColor" class="color-input" />
+      <span class="q-value">{{ watermarkColor }}</span>
+    </div>
+
+    <!-- 控制：不透明度（文字 / 线条 / 描边 统一） -->
+    <div class="quality-row">
+      <label for="watermarkOpacityRange">🌫️ 不透明度</label>
+      <input id="watermarkOpacityRange" type="range" min="0" max="1" step="0.01" v-model.number="watermarkOpacity" />
+      <span class="q-value">{{ Math.round(watermarkOpacity * 100) }}%</span>
+    </div>
+
     <div class="btn-group">
       <button class="btn btn-primary" @click="applyWatermark">🌀 生成斜水印</button>
       <button class="btn btn-outline" @click="resetToOriginal">↺ 重置原图</button>
@@ -59,7 +98,7 @@
     <div class="download-wrap">
       <button class="download-btn" :disabled="!canDownload" @click="downloadJPG">⬇️ 下载 JPG (压缩)</button>
     </div>
-    <div class="footnote">水印以 45° 斜向平铺覆盖全屏 · 下载为 JPG 格式，支持调节压缩质量</div>
+    <div class="footnote">水印以 45° 斜向平铺覆盖全屏 · 下载为 JPG 格式，支持调节水印字号、间距、连接线、颜色与不透明度、压缩质量</div>
   </div>
 </template>
 
@@ -71,6 +110,12 @@ const fileInputRef = ref<HTMLInputElement | null>(null)
 const previewUrl = ref<string | null>(null)
 const watermarkText = ref('全屏斜水印')
 const quality = ref(85)
+const fontSize = ref(21)
+const spacingScale = ref(1.4)
+type LineStyle = 'none' | 'solid' | 'dashed' | 'dotted'
+const lineStyle = ref<LineStyle>('dashed')
+const watermarkColor = ref('#ffffff')
+const watermarkOpacity = ref(0.09)
 
 // 原始文件 & canvas
 const currentFile = ref<File | null>(null)
@@ -113,12 +158,26 @@ function previewCanvas(canvas: HTMLCanvasElement): Promise<string> {
   })
 }
 
+// 十六进制颜色 + 透明度 -> rgba()
+function hexToRgba(hex: string, alpha: number): string {
+  const h = hex.replace('#', '')
+  const r = parseInt(h.substring(0, 2), 16)
+  const g = parseInt(h.substring(2, 4), 16)
+  const b = parseInt(h.substring(4, 6), 16)
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`
+}
+
 // ---------- 核心: 生成全屏斜向平铺水印 ----------
 function generateFullscreenDiagonalWatermark(
   sourceImg: HTMLImageElement,
   text: string,
   targetWidth: number,
   targetHeight: number,
+  fontSize: number,
+  spacingScale: number,
+  lineStyle: LineStyle,
+  color: string,
+  opacity: number,
 ): HTMLCanvasElement {
   const canvas = document.createElement('canvas')
   canvas.width = targetWidth
@@ -132,41 +191,58 @@ function generateFullscreenDiagonalWatermark(
   if (!watermarkText) return canvas
 
   // 水印参数
-  const baseFontSize = Math.max(28, Math.min(targetWidth, targetHeight) * 0.055)
-  const fontSize = Math.min(baseFontSize, 80)
   const angle = (-45 * Math.PI) / 180
-  const spacingX = fontSize * 4.2
-  const spacingY = fontSize * 3.8
+  // 规则方格间距（让连接线能在 45° 斜向上精确平铺）
+  const stepX = fontSize * 4.0 * spacingScale
+  const stepY = stepX
 
   ctx.font = `700 ${fontSize}px "Segoe UI", "PingFang SC", Roboto, system-ui, sans-serif`
   const metrics = ctx.measureText(watermarkText)
 
   // 平铺覆盖
   const diag = Math.sqrt(targetWidth * targetWidth + targetHeight * targetHeight)
-  const stepX = spacingX
-  const stepY = spacingY
   const startX = -diag * 0.3
   const startY = -diag * 0.2
   const rows = Math.ceil((targetHeight + diag * 0.8) / stepY) + 2
   const cols = Math.ceil((targetWidth + diag * 0.8) / stepX) + 2
 
-  const baseAlpha = 0.28
-
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
-      const x = startX + c * stepX + (r % 2) * (stepX * 0.5)
+      const x = startX + c * stepX
       const y = startY + r * stepY
 
       ctx.save()
       ctx.translate(x, y)
       ctx.rotate(angle)
 
+      // 连接线：在 -45° 旋转坐标系内绘制十字，整体渲染为 45° 斜向平铺网格
+      if (lineStyle !== 'none') {
+        ctx.strokeStyle = hexToRgba(color, opacity)
+        ctx.lineWidth = Math.max(1, fontSize * 0.03)
+        ctx.lineCap = 'round'
+        if (lineStyle === 'dashed') {
+          ctx.setLineDash([fontSize * 0.5, fontSize * 0.4])
+        } else if (lineStyle === 'dotted') {
+          ctx.setLineDash([Math.max(1.5, fontSize * 0.06), fontSize * 0.45])
+        } else {
+          ctx.setLineDash([])
+        }
+        const L = Math.SQRT2 * stepX
+        ctx.beginPath()
+        ctx.moveTo(-L, 0)
+        ctx.lineTo(L, 0)
+        ctx.moveTo(0, -L)
+        ctx.lineTo(0, L)
+        ctx.stroke()
+        ctx.setLineDash([])
+      }
+
       ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'
       ctx.shadowBlur = 16
       ctx.shadowOffsetX = 2
       ctx.shadowOffsetY = 2
 
-      ctx.fillStyle = `rgba(255, 255, 255, ${baseAlpha})`
+      ctx.fillStyle = hexToRgba(color, opacity)
       ctx.font = `700 ${fontSize}px "Segoe UI", "PingFang SC", Roboto, system-ui, sans-serif`
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
@@ -175,7 +251,7 @@ function generateFullscreenDiagonalWatermark(
       ctx.shadowBlur = 0
       ctx.shadowOffsetX = 0
       ctx.shadowOffsetY = 0
-      ctx.strokeStyle = `rgba(0, 0, 0, 0.15)`
+      ctx.strokeStyle = hexToRgba(color, opacity)
       ctx.lineWidth = 1.8
       ctx.strokeText(watermarkText, 0, 0)
 
@@ -205,7 +281,7 @@ async function applyWatermark() {
       h = Math.round(h * ratio)
     }
 
-    const canvas = generateFullscreenDiagonalWatermark(img, text, w, h)
+    const canvas = generateFullscreenDiagonalWatermark(img, text, w, h, fontSize.value, spacingScale.value, lineStyle.value, watermarkColor.value, watermarkOpacity.value)
     watermarkedCanvas.value = canvas
 
     // 预览 (无损 PNG)
@@ -545,6 +621,44 @@ h1 .badge {
   padding: 4px 12px;
   border-radius: 30px;
   font-size: 15px;
+}
+
+.line-select {
+  flex: 1;
+  min-width: 120px;
+  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 12px 18px;
+  border-radius: 40px;
+  font-size: 15px;
+  outline: 1px solid #cbd8ec;
+  color: #0d1a2f;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.line-select:focus {
+  outline: 2px solid #2f4b78;
+  background: white;
+  box-shadow: 0 4px 14px rgba(36, 70, 130, 0.12);
+}
+
+.color-input {
+  flex: 1;
+  min-width: 120px;
+  height: 44px;
+  border: none;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 5px 10px;
+  border-radius: 30px;
+  outline: 1px solid #cbd8ec;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.color-input:focus {
+  outline: 2px solid #2f4b78;
+  box-shadow: 0 4px 14px rgba(36, 70, 130, 0.12);
 }
 
 .btn-group {
